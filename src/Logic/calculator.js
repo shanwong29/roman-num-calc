@@ -1,15 +1,15 @@
 class Calculator {
-  constructor(num1, num2) {
+  constructor(num1, num2, method) {
     this.num1 = num1;
     this.num2 = num2;
+    this.method = method;
   }
 
   addition() {
-    console.log(this.num1 + this.num2);
     return this.num1 + this.num2;
   }
 
-  deduction() {
+  subtraction() {
     return this.num1 - this.num2;
   }
 
@@ -19,6 +19,26 @@ class Calculator {
 
   division() {
     return this.num1 / this.num2;
+  }
+
+  calculation() {
+    switch (this.method) {
+      case "+":
+        return this.addition();
+
+      case "-":
+        return this.subtraction();
+
+      case "*":
+        return this.multiplication();
+
+      case "/":
+        return this.division();
+
+      default:
+        //no sign is found
+        return this.num1;
+    }
   }
 }
 
