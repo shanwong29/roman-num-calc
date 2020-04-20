@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../Button/Button";
+import RomanNumCalc from "../../Logic/romanNumCalc";
 
 function Panel({ mode, setInput, input, ans, setAns }) {
   let numBtns;
@@ -52,7 +53,8 @@ function Panel({ mode, setInput, input, ans, setAns }) {
   let equalBtn = (
     <button
       onClick={() => {
-        //impletment calc logic
+        let expression = new RomanNumCalc(input);
+        setAns(expression.calculation());
       }}
     >
       =
