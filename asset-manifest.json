@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/roman-num-calc/static/css/main.83a7e514.chunk.css",
+    "main.js": "/roman-num-calc/static/js/main.58764c95.chunk.js",
+    "main.js.map": "/roman-num-calc/static/js/main.58764c95.chunk.js.map",
+    "runtime-main.js": "/roman-num-calc/static/js/runtime-main.4fe1fbc5.js",
+    "runtime-main.js.map": "/roman-num-calc/static/js/runtime-main.4fe1fbc5.js.map",
+    "static/js/2.d98434b4.chunk.js": "/roman-num-calc/static/js/2.d98434b4.chunk.js",
+    "static/js/2.d98434b4.chunk.js.map": "/roman-num-calc/static/js/2.d98434b4.chunk.js.map",
+    "index.html": "/roman-num-calc/index.html",
+    "precache-manifest.725df7124b169b0c08d9b44e2509de40.js": "/roman-num-calc/precache-manifest.725df7124b169b0c08d9b44e2509de40.js",
+    "service-worker.js": "/roman-num-calc/service-worker.js",
+    "static/css/main.83a7e514.chunk.css.map": "/roman-num-calc/static/css/main.83a7e514.chunk.css.map",
+    "static/js/2.d98434b4.chunk.js.LICENSE.txt": "/roman-num-calc/static/js/2.d98434b4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4fe1fbc5.js",
+    "static/js/2.d98434b4.chunk.js",
+    "static/css/main.83a7e514.chunk.css",
+    "static/js/main.58764c95.chunk.js"
+  ]
+}
