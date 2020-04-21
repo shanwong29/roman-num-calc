@@ -4,6 +4,49 @@ import RomanNumCalc from "../../Logic/romanNumCalc";
 import ArabicNumCalc from "../../Logic/arabicNumCalc";
 
 function Panel({ mode, setInput, input, ans, setAns }) {
+  let handleInput = (children) => {
+    switch (children) {
+      case "cancel":
+        cancelAll();
+        break;
+      case "=":
+        getAns();
+        break;
+      default:
+        // when inputs are number
+        addInput(children);
+    }
+  };
+
+  const getAns = () => {
+    let expression;
+    if (mode === "roman") {
+      expression = new RomanNumCalc(input);
+    } else {
+      expression = new ArabicNumCalc(input);
+    }
+    if (expression.validation()) {
+      let ans = expression.calculation();
+      setAns(ans);
+    } else {
+      setAns("Invalid Input");
+    }
+  };
+
+  const addInput = (children) => {
+    if (ans) {
+      setAns("");
+      setInput(children);
+    } else {
+      setInput((input += children));
+    }
+  };
+
+  const cancelAll = () => {
+    setInput("");
+    setAns("");
+  };
+
   let numBtns;
   if (mode === "roman") {
     numBtns = [`I`, `V`, `X`, `L`, `C`, `D`, `M`];
@@ -13,71 +56,25 @@ function Panel({ mode, setInput, input, ans, setAns }) {
 
   numBtns = numBtns.map((el, i) => {
     return (
-      <Button
-        key={i}
-        setInput={setInput}
-        input={input}
-        ans={ans}
-        setAns={setAns}
-      >
+      <Button key={i} handleInput={handleInput}>
         {el}
       </Button>
     );
   });
 
-  let method = [`+`, `-`, `*`, `/`];
-  let methodButtons = method.map((el, i) => {
+  let operators = [`+`, `-`, `*`, `/`, `cancel`, `=`];
+  operators = operators.map((el, i) => {
     return (
-      <Button
-        key={i}
-        setInput={setInput}
-        input={input}
-        ans={ans}
-        setAns={setAns}
-      >
+      <Button key={i} handleInput={handleInput}>
         {el}
       </Button>
     );
   });
-
-  let cancelBtn = (
-    <button
-      onClick={() => {
-        setInput("");
-        setAns("");
-      }}
-    >
-      cancel
-    </button>
-  );
-
-  let equalBtn = (
-    <button
-      onClick={() => {
-        let expression;
-        if (mode === "roman") {
-          expression = new RomanNumCalc(input);
-        } else {
-          expression = new ArabicNumCalc(input);
-        }
-        if (expression.validation()) {
-          let ans = expression.calculation();
-          setAns(ans);
-        } else {
-          setAns("Invalid Input");
-        }
-      }}
-    >
-      =
-    </button>
-  );
 
   return (
     <div>
       {numBtns}
-      {cancelBtn}
-      {equalBtn}
-      {methodButtons}
+      {operators}
     </div>
   );
 }

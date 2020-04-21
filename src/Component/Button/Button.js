@@ -1,20 +1,7 @@
 import React from "react";
 
-function Button({ children, setInput, input, setAns, ans }) {
-  return (
-    <button
-      onClick={() => {
-        if (ans) {
-          setAns("");
-          setInput(children);
-        } else {
-          setInput((input += children));
-        }
-      }}
-    >
-      {children}
-    </button>
-  );
-}
+const Button = ({ children, handleInput }) => {
+  return <button onClick={() => handleInput(children)}>{children}</button>;
+};
 
 export default Button;
