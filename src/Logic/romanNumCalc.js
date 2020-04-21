@@ -1,5 +1,6 @@
-// import Calculator from "./calculator";
-const Calculator = require("./calculator");
+// const Calculator = require("./calculator");
+import Calculator from "./calculator";
+
 const {
   convertFromRomanToArabic,
   convertFromArabicToRoman,

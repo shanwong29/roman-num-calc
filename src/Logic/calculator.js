@@ -42,5 +42,5 @@ class Calculator {
   }
 }
 
-// export default Calculator;
-module.exports = Calculator;
+export default Calculator;
+// module.exports = Calculator;

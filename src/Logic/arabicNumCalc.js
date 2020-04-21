@@ -1,5 +1,7 @@
-const Calculator = require("./calculator");
-const { convertFromArabicToRoman } = require("./converterService");
+// const Calculator = require("./calculator");
+// const { convertFromArabicToRoman } = require("./converterService");
+import Calculator from "./calculator";
+// import { convertFromArabicToRoman } from "./converterService";
 
 class ArabicNumCalc extends Calculator {
   constructor(input) {

@@ -83,4 +83,4 @@ const convertFromArabicToRoman = (givenNum) => {
   return ans;
 };
 
-module.exports = { convertFromRomanToArabic, convertFromArabicToRoman };
+export { convertFromRomanToArabic, convertFromArabicToRoman };
