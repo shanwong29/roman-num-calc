@@ -56,7 +56,7 @@ function Panel({ mode, setInput, input, ans, setAns }) {
 
   numBtns = numBtns.map((el, i) => {
     return (
-      <Button key={i} handleInput={handleInput}>
+      <Button key={i} onClickFn={() => handleInput(el)}>
         {el}
       </Button>
     );
@@ -65,7 +65,7 @@ function Panel({ mode, setInput, input, ans, setAns }) {
   let operators = [`+`, `-`, `*`, `/`, `cancel`, `=`];
   operators = operators.map((el, i) => {
     return (
-      <Button key={i} handleInput={handleInput}>
+      <Button key={i} onClickFn={() => handleInput(el)}>
         {el}
       </Button>
     );
