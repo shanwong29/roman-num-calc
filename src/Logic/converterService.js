@@ -36,6 +36,31 @@ const convertFromRomanToArabic = (givenNum) => {
   return ans;
 };
 
+const convertExpFromRomanToArabic = (givenExp) => {
+  const numRegex = /I|V|X|L|C|D|M/;
+  let numStr = "";
+  let ansArr = [];
+
+  for (let i = 0; i < givenExp.length; i++) {
+    if (numRegex.test(givenExp[i])) {
+      //if it is number
+      numStr += givenExp[i];
+
+      if (i === givenExp.length - 1 && numStr !== "") {
+        let arabicNum = convertFromRomanToArabic(numStr);
+        ansArr.push(arabicNum);
+      }
+    } else {
+      //not a number
+      let arabicNum = convertFromRomanToArabic(numStr);
+      ansArr.push(arabicNum);
+      ansArr.push(givenExp[i]);
+      numStr = "";
+    }
+  }
+  return ansArr.join("");
+};
+
 const convertFromArabicToRoman = (givenNum) => {
   if (typeof givenNum !== "number") {
     return givenNum;
@@ -122,4 +147,5 @@ export {
   convertFromRomanToArabic,
   convertFromArabicToRoman,
   convertExpFromArabicToRoman,
+  convertExpFromRomanToArabic,
 };

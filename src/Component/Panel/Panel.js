@@ -51,7 +51,7 @@ function Panel({ mode, setInput, input, ans, setAns }) {
   if (mode === "roman") {
     numBtns = [`I`, `V`, `X`, `L`, `C`, `D`, `M`];
   } else {
-    numBtns = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
+    numBtns = [`7`, `8`, `9`, `4`, `5`, `6`, `1`, `2`, `3`, `0`];
   }
 
   numBtns = numBtns.map((el, i) => {

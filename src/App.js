@@ -7,6 +7,7 @@ import {
   convertFromRomanToArabic,
   convertFromArabicToRoman,
   convertExpFromArabicToRoman,
+  convertExpFromRomanToArabic,
 } from "./Logic/converterService";
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
       if (mode === "roman") {
         calculator = convertExpFromArabicToRoman(input);
       } else {
-        calculator = convertFromRomanToArabic(input);
+        calculator = convertExpFromRomanToArabic(input);
       }
       const newInput = calculator;
       setInput(newInput);
