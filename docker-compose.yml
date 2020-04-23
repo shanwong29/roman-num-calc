@@ -1,0 +1,11 @@
+version: "3"
+services:
+  client:
+    container_name: roman-num-calc
+    build: ./
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/usr/app/src
+      - ./public:/usr/app/public
+    tty: true
