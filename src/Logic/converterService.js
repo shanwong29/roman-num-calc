@@ -37,6 +37,10 @@ const convertFromRomanToArabic = (givenNum) => {
 };
 
 const convertFromArabicToRoman = (givenNum) => {
+  if (typeof givenNum !== "number") {
+    return givenNum;
+  }
+
   if (givenNum <= 0 || givenNum > 3999) {
     return `Roman number can only in the following range: 0 <= n < 3999`;
   }
@@ -83,4 +87,39 @@ const convertFromArabicToRoman = (givenNum) => {
   return ans;
 };
 
-export { convertFromRomanToArabic, convertFromArabicToRoman };
+const convertExpFromArabicToRoman = (givenExp) => {
+  let expArr = [];
+  let numStr = "";
+  let digitRegex = /\d+/;
+
+  for (let i = 0; i < givenExp.length; i++) {
+    if (digitRegex.test(givenExp[i])) {
+      numStr += givenExp[i];
+    } else {
+      if (numStr.length > 0) {
+        expArr.push(Number(numStr));
+        numStr = "";
+      }
+      expArr.push(givenExp[i]);
+    }
+    if (i === givenExp.length - 1 && numStr.length > 0) {
+      expArr.push(Number(numStr));
+    }
+  }
+
+  for (let i = 0; i < expArr.length; i++) {
+    if (digitRegex.test(expArr[i])) {
+      if (expArr[i] <= 0 || expArr[i] > 3999) {
+        return "";
+      }
+      expArr[i] = convertFromArabicToRoman(expArr[i]);
+    }
+  }
+  return expArr.join("");
+};
+
+export {
+  convertFromRomanToArabic,
+  convertFromArabicToRoman,
+  convertExpFromArabicToRoman,
+};

@@ -1,13 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Display from "./Component/Display/Display";
 import Panel from "./Component/Panel/Panel";
 import ModeControl from "./Component/ModeControl/ModeControl";
+import {
+  convertFromRomanToArabic,
+  convertFromArabicToRoman,
+  convertExpFromArabicToRoman,
+} from "./Logic/converterService";
 
 function App() {
   const [mode, setMode] = useState("roman");
   const [input, setInput] = useState("");
   const [ans, setAns] = useState("");
+
+  useEffect(() => {
+    let calculator;
+    if (ans) {
+      if (mode === "roman") {
+        calculator = convertFromArabicToRoman(ans);
+      } else {
+        calculator = convertFromRomanToArabic(ans);
+      }
+
+      const newAns = calculator;
+      setAns(newAns);
+    }
+
+    if (input) {
+      if (mode === "roman") {
+        calculator = convertExpFromArabicToRoman(input);
+      } else {
+        calculator = convertFromRomanToArabic(input);
+      }
+      const newInput = calculator;
+      setInput(newInput);
+    }
+  }, [mode]);
 
   return (
     <div className="App">
