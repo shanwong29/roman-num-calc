@@ -14,9 +14,9 @@ class RomanNumCalc extends Calculator {
   }
 
   validation() {
-    let regex = /^([I|V|X|L|C|D|M]+)((\+|\-|\*|\/)([I|V|X|L|C|D|M]+))?$/g;
+    let regex = /^([I|V|X|L|C|D|M]+)((\+|-|\*|\/)([I|V|X|L|C|D|M]+))?$/g;
     if (regex.test(this.input)) {
-      regex = /^([I|V|X|L|C|D|M]+)((\+|\-|\*|\/)([I|V|X|L|C|D|M]+))?$/g;
+      regex = /^([I|V|X|L|C|D|M]+)((\+|-|\*|\/)([I|V|X|L|C|D|M]+))?$/g;
       let matches = regex.exec(this.input);
 
       this.num1 = convertFromRomanToArabic(matches[1]);

@@ -10,10 +10,10 @@ class ArabicNumCalc extends Calculator {
   }
 
   validation() {
-    let regex = /^(\d+)((\+|\-|\*|\/)(\d+))?$/g;
+    let regex = /^(\d+)((\+|-|\*|\/)(\d+))?$/g;
 
     if (regex.test(this.input)) {
-      regex = /^(\d+)((\+|\-|\*|\/)(\d+))?$/g;
+      regex = /^(\d+)((\+|-|\*|\/)(\d+))?$/g;
       const matches = regex.exec(this.input);
 
       this.num1 = Number(matches[1]);
