@@ -9,11 +9,14 @@ function Display() {
       <input
         type="text"
         value={state.input}
-        onChange={(e) =>
-          dispatch({ type: "ADD_INPUT", valueToBeAdded: e.target.value })
-        }
+        onChange={(e) => {
+          console.log(e.target.value);
+          dispatch({ type: "SET_INPUT", newValue: e.target.value });
+        }}
       ></input>
-      <p>{state.ans}</p>
+      <p>
+        {state.ans} {state.errorMsg}
+      </p>
     </>
   );
 }
