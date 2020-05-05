@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../Button/Button";
 import RomanNumCalc from "../../Logic/romanNumCalc";
 import ArabicNumCalc from "../../Logic/arabicNumCalc";
+import Context from "../../store/context";
 
-function Panel({ mode, setInput, input, ans, setAns }) {
+function Panel({ setInput, input, ans, setAns }) {
+  const { state } = useContext(Context);
   let handleInput = (children) => {
     switch (children) {
       case "cancel":
@@ -20,7 +22,7 @@ function Panel({ mode, setInput, input, ans, setAns }) {
 
   const getAns = () => {
     let expression;
-    if (mode === "roman") {
+    if (state.isRomanMode) {
       expression = new RomanNumCalc(input);
     } else {
       expression = new ArabicNumCalc(input);
@@ -48,7 +50,7 @@ function Panel({ mode, setInput, input, ans, setAns }) {
   };
 
   let numBtns;
-  if (mode === "roman") {
+  if (state.isRomanMode) {
     numBtns = [`I`, `V`, `X`, `L`, `C`, `D`, `M`];
   } else {
     numBtns = [`7`, `8`, `9`, `4`, `5`, `6`, `1`, `2`, `3`, `0`];

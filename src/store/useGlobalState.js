@@ -2,20 +2,19 @@ import { useReducer } from "react";
 
 const initialState = {
   isDarkMode: false,
-  name: "Shan",
+  isRomanMode: true,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "TOGGLE_DARK_MODE":
       return { ...state, isDarkMode: !state.isDarkMode };
-    case "CHANGE_NAME":
-      if (state.name === "Shan") {
-        return { ...state, name: "Izzi" };
+    case "CHANGE_LANG_MODE":
+      if (action.mode === `arabic`) {
+        return { ...state, isRomanMode: false };
       } else {
-        return { ...state, name: "Shan" };
+        return { ...state, isRomanMode: true };
       }
-
     default:
       return state;
   }

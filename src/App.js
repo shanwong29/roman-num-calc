@@ -26,14 +26,13 @@ const GlobalStyles = createGlobalStyle`
 
 export function App() {
   const [state, dispatch] = useGlobalState();
-  const [mode, setMode] = useState("roman");
   const [input, setInput] = useState("");
   const [ans, setAns] = useState("");
   console.log(state);
   useEffect(() => {
     let calculator;
     if (ans) {
-      if (mode === "roman") {
+      if (state.isRomanMode) {
         calculator = convertFromArabicToRoman(ans);
       } else {
         calculator = convertFromRomanToArabic(ans);
@@ -44,7 +43,7 @@ export function App() {
     }
 
     if (input) {
-      if (mode === "roman") {
+      if (state.isRomanMode) {
         calculator = convertExpFromArabicToRoman(input);
       } else {
         calculator = convertExpFromRomanToArabic(input);
@@ -52,7 +51,7 @@ export function App() {
       const newInput = calculator;
       setInput(newInput);
     }
-  }, [mode]);
+  }, [state.isRomanMode]);
 
   return (
     <Context.Provider value={{ state, dispatch }}>
@@ -62,21 +61,12 @@ export function App() {
           <DarkModeControl />
           <Display ans={ans} input={input} setInput={setInput} />
           <ModeControl
-            setMode={setMode}
-            mode={mode}
             ans={ans}
             setAns={setAns}
             input={input}
             setInput={setInput}
           />
-          <Panel
-            mode={mode}
-            setMode={setMode}
-            input={input}
-            setInput={setInput}
-            ans={ans}
-            setAns={setAns}
-          />
+          <Panel input={input} setInput={setInput} ans={ans} setAns={setAns} />
         </div>
       </ThemeProvider>
     </Context.Provider>
