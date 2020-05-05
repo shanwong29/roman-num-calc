@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Context } from "../../App";
+import Context from "../../store/context";
 
 /* useContext 
 ==> Accepts a context object (the value returned from React.createContext) and 
