@@ -11,13 +11,25 @@ import {
   convertExpFromRomanToArabic,
 } from "./Logic/converterService";
 
-import GlobalStateProvider from "./store/GloblaStateProvider";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { theme } from "./theme/theme";
+import Context from "./store/context";
+import useGlobalState from "./store/useGlobalState";
 
-function App() {
+const GlobalStyles = createGlobalStyle`
+  body{
+  
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
+  }
+`;
+
+export function App() {
+  const [state, dispatch] = useGlobalState();
   const [mode, setMode] = useState("roman");
   const [input, setInput] = useState("");
   const [ans, setAns] = useState("");
-
+  console.log(state);
   useEffect(() => {
     let calculator;
     if (ans) {
@@ -43,28 +55,31 @@ function App() {
   }, [mode]);
 
   return (
-    <GlobalStateProvider>
-      <div className="App">
-        <DarkModeControl />
-        <Display ans={ans} input={input} setInput={setInput} />
-        <ModeControl
-          setMode={setMode}
-          mode={mode}
-          ans={ans}
-          setAns={setAns}
-          input={input}
-          setInput={setInput}
-        />
-        <Panel
-          mode={mode}
-          setMode={setMode}
-          input={input}
-          setInput={setInput}
-          ans={ans}
-          setAns={setAns}
-        />
-      </div>
-    </GlobalStateProvider>
+    <Context.Provider value={{ state, dispatch }}>
+      <ThemeProvider theme={state.isDarkMode ? theme.dark : theme.light}>
+        <GlobalStyles />
+        <div className="App">
+          <DarkModeControl />
+          <Display ans={ans} input={input} setInput={setInput} />
+          <ModeControl
+            setMode={setMode}
+            mode={mode}
+            ans={ans}
+            setAns={setAns}
+            input={input}
+            setInput={setInput}
+          />
+          <Panel
+            mode={mode}
+            setMode={setMode}
+            input={input}
+            setInput={setInput}
+            ans={ans}
+            setAns={setAns}
+          />
+        </div>
+      </ThemeProvider>
+    </Context.Provider>
   );
 }
 

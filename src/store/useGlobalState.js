@@ -22,11 +22,9 @@ const reducer = (state, action) => {
 };
 
 const useGlobalState = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  return useReducer(reducer, initialState);
   //useReducer return modified state and a dispatch function
   //dispatch function takes an action as a parameter
-
-  return { state, dispatch };
 };
 
 export default useGlobalState;

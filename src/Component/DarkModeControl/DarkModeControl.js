@@ -10,15 +10,9 @@ const DarkModeControl = () => {
   const { state, dispatch } = useContext(Context);
   console.log(state);
   return (
-    <div>
-      isDarkMode: {state.isDarkMode && `true`} name: {state.name}
-      <button onClick={() => dispatch({ type: "TOGGLE_DARK_MODE" })}>
-        TOGGLE Dark Mode
-      </button>
-      <button onClick={() => dispatch({ type: "CHANGE_NAME" })}>
-        Change Name
-      </button>
-    </div>
+    <button onClick={() => dispatch({ type: "TOGGLE_DARK_MODE" })}>
+      TOGGLE Dark Mode
+    </button>
   );
 };
 
