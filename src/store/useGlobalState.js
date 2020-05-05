@@ -7,6 +7,7 @@ const initialState = {
   isRomanMode: true,
   input: "",
   ans: "",
+  errorMsg: "",
 };
 
 const reducer = (state, action) => {
@@ -27,15 +28,21 @@ const reducer = (state, action) => {
       } else {
         expression = new ArabicNumCalc(state.input);
       }
-      if (expression.validation()) {
-        let ans = expression.calculation();
-        return { ...state, ans };
+
+      let ans = expression.calculation();
+      if (ans.errorMsg) {
+        return { ...state, errorMsg: ans.errorMsg };
       }
-      return { ...state, ans: "Invalid Input" };
+      return { ...state, ans, errorMsg: "" };
 
     case "ADD_INPUT":
-      if (state.ans) {
-        return { ...state, input: action.valueToBeAdded, ans: "" };
+      if (state.ans || state.errorMsg) {
+        return {
+          ...state,
+          input: action.valueToBeAdded,
+          ans: "",
+          errorMsg: "",
+        };
       } else {
         return { ...state, input: state.input + action.valueToBeAdded };
       }
@@ -47,7 +54,7 @@ const reducer = (state, action) => {
       return { state, ans: action.newValue };
 
     case "CLEAR_INPUT_&_ANS":
-      return { ...state, ans: "", input: "" };
+      return { ...state, ans: "", input: "", errorMsg: "" };
 
     default:
       return state;

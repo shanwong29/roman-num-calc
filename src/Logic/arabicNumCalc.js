@@ -7,6 +7,7 @@ class ArabicNumCalc extends Calculator {
   constructor(input) {
     super();
     this.input = input;
+    this.errorMsg = "";
   }
 
   validation() {
@@ -24,6 +25,16 @@ class ArabicNumCalc extends Calculator {
     } else {
       return false;
     }
+  }
+
+  calculation() {
+    if (this.validation()) {
+      const ans = super.calculation();
+      return ans;
+    }
+
+    this.errorMsg = "Invalid Input";
+    return { errorMsg: this.errorMsg };
   }
 }
 

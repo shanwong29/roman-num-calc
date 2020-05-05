@@ -11,6 +11,7 @@ class RomanNumCalc extends Calculator {
     //need to be in front of any variable assignment
     super();
     this.input = input;
+    this.errorMsg = "";
   }
 
   validation() {
@@ -30,8 +31,23 @@ class RomanNumCalc extends Calculator {
   }
 
   calculation() {
-    let ans = super.calculation();
-    return convertFromArabicToRoman(ans);
+    if (this.validation()) {
+      const arabicAns = super.calculation();
+      if (Number.isInteger(arabicAns)) {
+        const ans = convertFromArabicToRoman(arabicAns);
+        if (ans.errorMsg) {
+          this.errorMsg = ans.errorMsg;
+          return { errorMsg: this.errorMsg };
+        } else {
+          return ans;
+        }
+      }
+      this.errorMsg = "Roman number can only be integer";
+      return { errorMsg: this.errorMsg };
+    }
+
+    this.errorMsg = "Invalid Input";
+    return { errorMsg: this.errorMsg };
   }
 }
 

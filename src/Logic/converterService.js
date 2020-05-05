@@ -1,4 +1,8 @@
 const convertFromRomanToArabic = (givenNum) => {
+  if (!givenNum.length) {
+    return "";
+  }
+
   let romanNumDict = {
     I: 1,
     V: 5,
@@ -37,6 +41,10 @@ const convertFromRomanToArabic = (givenNum) => {
 };
 
 const convertExpFromRomanToArabic = (givenExp) => {
+  if (!givenExp.length) {
+    return "";
+  }
+
   const numRegex = /I|V|X|L|C|D|M/;
   let numStr = "";
   let ansArr = [];
@@ -63,11 +71,13 @@ const convertExpFromRomanToArabic = (givenExp) => {
 
 const convertFromArabicToRoman = (givenNum) => {
   if (typeof givenNum !== "number") {
-    return givenNum;
+    return "";
   }
 
   if (givenNum <= 0 || givenNum > 3999) {
-    return `Roman number can only in the following range: 0 <= n < 3999`;
+    return {
+      errorMsg: `Roman number can only in the following range: 0 < n < 3999`,
+    };
   }
 
   let givenNumStr = givenNum.toString();
