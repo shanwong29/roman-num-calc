@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import Context from "../../store/context";
 
-function Display({ input, ans, setInput }) {
+function Display() {
+  const { state, dispatch } = useContext(Context);
+
   return (
     <>
       <input
         type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
+        value={state.input}
+        onChange={(e) =>
+          dispatch({ type: "ADD_INPUT", valueToBeAdded: e.target.value })
+        }
       ></input>
-      <p>{ans}</p>
+      <p>{state.ans}</p>
     </>
   );
 }

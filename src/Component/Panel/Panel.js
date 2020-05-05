@@ -1,52 +1,26 @@
 import React, { useContext } from "react";
 import Button from "../Button/Button";
-import RomanNumCalc from "../../Logic/romanNumCalc";
-import ArabicNumCalc from "../../Logic/arabicNumCalc";
 import Context from "../../store/context";
 
-function Panel({ setInput, input, ans, setAns }) {
-  const { state } = useContext(Context);
+function Panel() {
+  const { state, dispatch } = useContext(Context);
+
   let handleInput = (children) => {
+    let type;
+    let valueToBeAdded = "";
     switch (children) {
       case "cancel":
-        cancelAll();
+        type = `CLEAR_INPUT_&_ANS`;
         break;
       case "=":
-        getAns();
+        type = `GET_ANS`;
         break;
       default:
-        // when inputs are number
-        addInput(children);
+        type = `ADD_INPUT`;
+        valueToBeAdded = children;
     }
-  };
 
-  const getAns = () => {
-    let expression;
-    if (state.isRomanMode) {
-      expression = new RomanNumCalc(input);
-    } else {
-      expression = new ArabicNumCalc(input);
-    }
-    if (expression.validation()) {
-      let ans = expression.calculation();
-      setAns(ans);
-    } else {
-      setAns("Invalid Input");
-    }
-  };
-
-  const addInput = (children) => {
-    if (ans) {
-      setAns("");
-      setInput(children);
-    } else {
-      setInput((input += children));
-    }
-  };
-
-  const cancelAll = () => {
-    setInput("");
-    setAns("");
+    dispatch({ type, valueToBeAdded });
   };
 
   let numBtns;
