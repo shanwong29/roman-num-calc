@@ -1,7 +1,7 @@
 // const Calculator = require("./calculator");
-// const { convertFromArabicToRoman } = require("./converterService");
+// const { convertNumFromArabicToRoman } = require("./converterService");
 import Calculator from "./calculator";
-// import { convertFromArabicToRoman } from "./converterService";
+// import { convertNumFromArabicToRoman } from "./converterService";
 
 class ArabicNumCalc extends Calculator {
   constructor(input) {
@@ -11,16 +11,21 @@ class ArabicNumCalc extends Calculator {
   }
 
   validation() {
-    let regex = /^(\d+)((\+|-|\*|\/)(\d+))?$/g;
+    let regex = /^(-?\d+(\.\d+)?)((\+|-|\*|\/)(-?\d+(\.\d+)?))?$/g;
 
     if (regex.test(this.input)) {
-      regex = /^(\d+)((\+|-|\*|\/)(\d+))?$/g;
+      regex = /^(-?\d+(\.\d+)?)((\+|-|\*|\/)(-?\d+(\.\d+)?))?$/g;
       const matches = regex.exec(this.input);
 
       this.num1 = Number(matches[1]);
-      this.num2 = Number(matches[4]);
-      this.method = matches[3];
 
+      if (matches[5]) {
+        this.num2 = Number(matches[5]);
+        this.method = matches[4];
+      } else {
+        this.num2 = null;
+        this.method = null;
+      }
       return true;
     } else {
       return false;

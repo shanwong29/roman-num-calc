@@ -138,7 +138,7 @@ const convertExpFromArabicToRoman = (givenExp) => {
   let digitRegex = /\d+/;
 
   for (let i = 0; i < givenExp.length; i++) {
-    if (digitRegex.test(givenExp[i])) {
+    if (digitRegex.test(givenExp[i]) || givenExp[i] === ".") {
       numStr += givenExp[i];
     } else {
       if (numStr.length > 0) {
