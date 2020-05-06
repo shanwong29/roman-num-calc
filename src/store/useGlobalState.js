@@ -67,7 +67,7 @@ const reducer = (state, action) => {
 
       let ans = expression.calculation();
       if (ans.errorMsg) {
-        return { ...state, errorMsg: ans.errorMsg };
+        return { ...state, errorMsg: ans.errorMsg, ans: "" };
       }
       return { ...state, ans, errorMsg: "" };
 
@@ -84,10 +84,10 @@ const reducer = (state, action) => {
       }
 
     case "SET_INPUT":
-      return { state, input: action.newValue };
+      return { ...state, input: action.newValue };
 
     case "SET_ANS":
-      return { state, ans: action.newValue };
+      return { ...state, ans: action.newValue };
 
     case "CLEAR_INPUT_&_ANS":
       return { ...state, ans: "", input: "", errorMsg: "" };
