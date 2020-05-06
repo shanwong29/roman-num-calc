@@ -2,8 +2,8 @@
 import Calculator from "./calculator";
 
 const {
-  convertFromRomanToArabic,
-  convertFromArabicToRoman,
+  convertNumFromRomanToArabic,
+  convertNumFromArabicToRoman,
 } = require("./converterService");
 
 class RomanNumCalc extends Calculator {
@@ -20,8 +20,8 @@ class RomanNumCalc extends Calculator {
       regex = /^([I|V|X|L|C|D|M]+)((\+|-|\*|\/)([I|V|X|L|C|D|M]+))?$/g;
       let matches = regex.exec(this.input);
 
-      this.num1 = convertFromRomanToArabic(matches[1]);
-      this.num2 = convertFromRomanToArabic(matches[4]);
+      this.num1 = convertNumFromRomanToArabic(matches[1]);
+      this.num2 = convertNumFromRomanToArabic(matches[4]);
       this.method = matches[3];
 
       return true;
@@ -33,17 +33,13 @@ class RomanNumCalc extends Calculator {
   calculation() {
     if (this.validation()) {
       const arabicAns = super.calculation();
-      if (Number.isInteger(arabicAns)) {
-        const ans = convertFromArabicToRoman(arabicAns);
-        if (ans.errorMsg) {
-          this.errorMsg = ans.errorMsg;
-          return { errorMsg: this.errorMsg };
-        } else {
-          return ans;
-        }
+      const ans = convertNumFromArabicToRoman(arabicAns);
+      if (ans.errorMsg) {
+        this.errorMsg = ans.errorMsg;
+        return { errorMsg: this.errorMsg };
+      } else {
+        return ans;
       }
-      this.errorMsg = "Roman number can only be integer";
-      return { errorMsg: this.errorMsg };
     }
 
     this.errorMsg = "Invalid Input";

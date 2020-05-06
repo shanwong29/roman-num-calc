@@ -1,5 +1,7 @@
-const convertFromRomanToArabic = (givenNum) => {
-  if (!givenNum.length) {
+const convertNumFromRomanToArabic = (givenNum) => {
+  //given Number is always string
+  //This function should return a str
+  if (!givenNum.length || !givenNum) {
     return "";
   }
 
@@ -41,6 +43,8 @@ const convertFromRomanToArabic = (givenNum) => {
 };
 
 const convertExpFromRomanToArabic = (givenExp) => {
+  //givenExp is always string
+  //This function should return a str
   if (!givenExp.length) {
     return "";
   }
@@ -54,13 +58,13 @@ const convertExpFromRomanToArabic = (givenExp) => {
       //if it is number
       numStr += givenExp[i];
 
-      if (i === givenExp.length - 1 && numStr !== "") {
-        let arabicNum = convertFromRomanToArabic(numStr);
+      if (i === givenExp.length - 1 && numStr.length > 0) {
+        let arabicNum = convertNumFromRomanToArabic(numStr);
         ansArr.push(arabicNum);
       }
     } else {
       //not a number
-      let arabicNum = convertFromRomanToArabic(numStr);
+      let arabicNum = convertNumFromRomanToArabic(numStr);
       ansArr.push(arabicNum);
       ansArr.push(givenExp[i]);
       numStr = "";
@@ -69,9 +73,15 @@ const convertExpFromRomanToArabic = (givenExp) => {
   return ansArr.join("");
 };
 
-const convertFromArabicToRoman = (givenNum) => {
-  if (typeof givenNum !== "number") {
+const convertNumFromArabicToRoman = (givenNum) => {
+  //givenNum is always a numberized value
+  //This function should return a str
+  if (!givenNum && givenNum !== 0) {
     return "";
+  }
+
+  if (!Number.isInteger(givenNum)) {
+    return { errorMsg: "Roman number can only be integer" };
   }
 
   if (givenNum <= 0 || givenNum > 3999) {
@@ -144,18 +154,20 @@ const convertExpFromArabicToRoman = (givenExp) => {
 
   for (let i = 0; i < expArr.length; i++) {
     if (digitRegex.test(expArr[i])) {
-      if (expArr[i] <= 0 || expArr[i] > 3999) {
-        return "";
+      expArr[i] = convertNumFromArabicToRoman(expArr[i]);
+      if (expArr[i].errorMsg) {
+        return {
+          errorMsg: expArr[i].errorMsg,
+        };
       }
-      expArr[i] = convertFromArabicToRoman(expArr[i]);
     }
   }
   return expArr.join("");
 };
 
 export {
-  convertFromRomanToArabic,
-  convertFromArabicToRoman,
+  convertNumFromRomanToArabic,
+  convertNumFromArabicToRoman,
   convertExpFromArabicToRoman,
   convertExpFromRomanToArabic,
 };
