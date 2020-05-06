@@ -15,14 +15,21 @@ class RomanNumCalc extends Calculator {
   }
 
   validation() {
-    let regex = /^([I|V|X|L|C|D|M]+)((\+|-|\*|\/)([I|V|X|L|C|D|M]+))?$/g;
-    if (regex.test(this.input)) {
-      regex = /^([I|V|X|L|C|D|M]+)((\+|-|\*|\/)([I|V|X|L|C|D|M]+))?$/g;
-      let matches = regex.exec(this.input);
+    let regexRomanExp = /^(?=[MDCLXVI])M{0,3}(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})((\+|-|\*|\/)(?=[MDCLXVI])M{0,3}(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3}))?$/g;
+    if (regexRomanExp.test(this.input)) {
+      let regexOperator = /\+|-|\*|\//;
+      let matches = regexOperator.exec(this.input);
 
-      this.num1 = convertNumFromRomanToArabic(matches[1]);
-      this.num2 = convertNumFromRomanToArabic(matches[4]);
-      this.method = matches[3];
+      if (matches) {
+        this.method = matches[0];
+        let numArr = this.input.split(this.method);
+        this.num1 = convertNumFromRomanToArabic(numArr[0]);
+        this.num2 = convertNumFromRomanToArabic(numArr[1]);
+      } else {
+        this.num1 = convertNumFromRomanToArabic(this.input);
+        this.num2 = null;
+        this.method = null;
+      }
 
       return true;
     } else {

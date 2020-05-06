@@ -5,6 +5,11 @@ const convertNumFromRomanToArabic = (givenNum) => {
     return "";
   }
 
+  const validRomanNumRegex = /^M{0,3}(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$/g;
+  if (!validRomanNumRegex.test(givenNum)) {
+    return { errorMsg: "Given Roman number is invalid" };
+  }
+
   let romanNumDict = {
     I: 1,
     V: 5,
@@ -60,11 +65,17 @@ const convertExpFromRomanToArabic = (givenExp) => {
 
       if (i === givenExp.length - 1 && numStr.length > 0) {
         let arabicNum = convertNumFromRomanToArabic(numStr);
+        if (arabicNum.errorMsg) {
+          return arabicNum;
+        }
         ansArr.push(arabicNum);
       }
     } else {
       //not a number
       let arabicNum = convertNumFromRomanToArabic(numStr);
+      if (arabicNum.errorMsg) {
+        return arabicNum;
+      }
       ansArr.push(arabicNum);
       ansArr.push(givenExp[i]);
       numStr = "";
