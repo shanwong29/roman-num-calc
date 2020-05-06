@@ -1,6 +1,12 @@
 import { useReducer } from "react";
 import RomanNumCalc from "../Logic/romanNumCalc";
 import ArabicNumCalc from "../Logic/arabicNumCalc";
+import {
+  convertNumFromRomanToArabic,
+  convertNumFromArabicToRoman,
+  convertExpFromArabicToRoman,
+  convertExpFromRomanToArabic,
+} from "../Logic/converterService";
 
 const initialState = {
   isDarkMode: false,
@@ -16,10 +22,40 @@ const reducer = (state, action) => {
       return { ...state, isDarkMode: !state.isDarkMode };
 
     case "CHANGE_LANG_MODE":
-      if (action.mode === `arabic`) {
-        return { ...state, isRomanMode: false };
+      let newAns = "";
+      let newInput = "";
+      let errorMsg = "";
+
+      if (state.isRomanMode && state.ans) {
+        newAns = convertNumFromRomanToArabic(state.ans);
+      } else if (state.ans) {
+        newAns = convertNumFromArabicToRoman(Number(state.ans));
       }
-      return { ...state, isRomanMode: true };
+
+      if (state.isRomanMode && state.input) {
+        newInput = convertExpFromRomanToArabic(state.input);
+      } else if (state.input) {
+        newInput = convertExpFromArabicToRoman(state.input);
+      }
+
+      if (newAns.errorMsg) {
+        errorMsg = newAns.errorMsg;
+        newAns = "";
+      }
+
+      if (newInput.errorMsg) {
+        errorMsg = newInput.errorMsg;
+        newAns = "";
+        newInput = state.input;
+      }
+
+      return {
+        ...state,
+        isRomanMode: !state.isRomanMode,
+        ans: newAns,
+        input: newInput,
+        errorMsg,
+      };
 
     case "GET_ANS":
       let expression;
