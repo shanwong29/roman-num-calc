@@ -18,6 +18,17 @@ const initialState = {
   errorMsg: "",
 };
 
+const getRomanAns = (input) => {
+  const arabicExp = convertExpFromRomanToArabic(input);
+  if (arabicExp.errorMsg) {
+    return arabicExp;
+  }
+  const arabicAns = getArabicAns(arabicExp);
+  const ansInRoman = convertNumFromArabicToRoman(arabicAns);
+
+  return ansInRoman.errorMsg;
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "TOGGLE_DARK_MODE":
@@ -62,9 +73,7 @@ const reducer = (state, action) => {
     case "GET_ANS":
       let ans;
       if (state.isRomanMode) {
-        const arabicExp = convertExpFromRomanToArabic(state.input);
-        const arabicAns = getArabicAns(arabicExp);
-        ans = convertNumFromArabicToRoman(arabicAns);
+        ans = getRomanAns(state.input);
       } else {
         ans = getArabicAns(state.input);
       }
