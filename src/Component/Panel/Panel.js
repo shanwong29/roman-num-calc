@@ -11,9 +11,6 @@ function Panel() {
     let type;
     let payload = "";
 
-    const lastChar = state.input[state.input.length - 1];
-    const operatorsRegex = /\+|-|\*|\/|\./;
-    const isOperator = operatorsRegex.test(children);
     switch (children) {
       case "cancel":
         type = `CLEAR_INPUT_&_ANS`;
@@ -26,18 +23,18 @@ function Panel() {
         break;
 
       default:
-        if (isOperator && !lastChar) {
-          //avoid having operator as input[0]
+        if (state.errorMsg) {
+          //when there is err msg, user need to press AC to clear
           return;
         }
-        if (isOperator && operatorsRegex.test(lastChar)) {
-          //to catch the case for two operator // two dot input
-          payload = state.input.slice(0, state.input.length - 1) + children;
-          console.log("payLoad", payload);
-          type = `CHANGE_INPUT`;
+        const operatorsRegex = /\+|-|\*|\/|\./;
+        const isOperator = operatorsRegex.test(children);
+        if (isOperator) {
+          type = `ADD_OPERATOR_TO_INPUT`;
+          payload = children;
         } else {
           //when input is number
-          type = `ADD_INPUT`;
+          type = `ADD_NUMBER_TO_INPUT`;
           payload = children;
         }
     }

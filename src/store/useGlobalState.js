@@ -73,20 +73,40 @@ const reducer = (state, action) => {
       }
       return { ...state, ans, errorMsg: "" };
 
-    case "ADD_INPUT":
-      if (state.ans || state.errorMsg) {
+    case "ADD_NUMBER_TO_INPUT":
+      if (state.ans) {
         return {
           ...state,
           input: action.payload,
           ans: "",
-          errorMsg: "",
         };
       } else {
         return { ...state, input: state.input + action.payload };
       }
 
-    case `CHANGE_INPUT`:
-      return { ...state, input: action.payload };
+    case `ADD_OPERATOR_TO_INPUT`:
+      const operatorsRegex = /\+|-|\*|\/|\./;
+      const lastChar = state.input[state.input.length - 1];
+      const isLastCharOperator = operatorsRegex.test(lastChar);
+      if (!lastChar && action.payload === ("*" || "/" || ".")) {
+        //when first input equal to `*` or `/` or `.`
+        return;
+      } else if (state.ans) {
+        return {
+          ...state,
+          input: state.ans + action.payload,
+          ans: "",
+          errorMsg: "",
+        };
+      }
+      if (isLastCharOperator) {
+        //to avoid two consecutive operator input, e.g. "++"
+        return {
+          ...state,
+          input: state.input.slice(0, state.input.length - 1) + action.payload,
+        };
+      }
+      return { ...state, input: state.input + action.payload };
 
     case "SET_INPUT":
       return { ...state, input: action.newValue };
