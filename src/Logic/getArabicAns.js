@@ -6,10 +6,6 @@ export const getArabicAns = (input) => {
   let operatorArr = [];
   let startCuttingPt = 0;
 
-  if (input[0] === ("+" || "-")) {
-    input = `0${input}`;
-  }
-
   for (let i = 0; i < input.length; i++) {
     let operatorRegex = /\+|-|\*|\//;
 
@@ -42,6 +38,11 @@ export const getArabicAns = (input) => {
     ans = ans.calculation();
   }
 
+  if (!ans && ans !== 0) {
+    return {
+      errorMsg: `Invalid Input`,
+    };
+  }
   return ans;
 };
 

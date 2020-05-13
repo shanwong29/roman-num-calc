@@ -52,10 +52,12 @@ const reducer = (state, action) => {
         };
       }
 
-      if (state.isRomanMode && state.ans) {
-        newAns = getArabicAns(newInput);
-      } else if (state.ans) {
-        newAns = getRomanAns(newInput);
+      if (state.ans || state.ans === 0) {
+        if (state.isRomanMode) {
+          newAns = getArabicAns(newInput);
+        } else {
+          newAns = getRomanAns(newInput);
+        }
       }
 
       if (newAns.errorMsg) {
@@ -86,7 +88,7 @@ const reducer = (state, action) => {
       return { ...state, ans, errorMsg: "" };
 
     case "ADD_NUMBER_TO_INPUT":
-      if (state.ans) {
+      if (state.ans || state.ans === 0) {
         return {
           ...state,
           input: action.payload,
@@ -100,7 +102,7 @@ const reducer = (state, action) => {
       const operatorsRegex = /\+|-|\*|\/|\./;
       const lastChar = state.input[state.input.length - 1];
       const isLastCharOperator = operatorsRegex.test(lastChar);
-      if (state.ans) {
+      if (state.ans || state.ans === 0) {
         return {
           ...state,
           input: state.ans + action.payload,

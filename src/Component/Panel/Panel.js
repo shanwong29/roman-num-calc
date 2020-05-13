@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 // import button from "../button/button";
 import Context from "../../store/context";
 import * as Styled from "./Panel.styles";
 
 function Panel() {
   const { state, dispatch } = useContext(Context);
-  const [dotNumber, setDotNumber] = useState(0);
 
   console.log("panel renderede");
 
@@ -38,7 +37,10 @@ function Panel() {
         key={i}
         onClick={() =>
           !state.errorMsg &&
-          state.input.length &&
+          (state.input.length > 1 ||
+            (state.input.length === 1 &&
+              state.input[0] !== "+" &&
+              state.input[0] !== "-")) &&
           dispatch({ type: `ADD_OPERATOR_TO_INPUT`, payload: el })
         }
       >
@@ -68,7 +70,6 @@ function Panel() {
       onClick={() =>
         !state.errorMsg &&
         state.input.length &&
-        dotNumber === 0 &&
         dispatch({ type: `ADD_OPERATOR_TO_INPUT`, payload: "." })
       }
     >
