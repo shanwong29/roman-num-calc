@@ -100,9 +100,18 @@ const reducer = (state, action) => {
       const operatorsRegex = /\+|-|\*|\/|\./;
       const lastChar = state.input[state.input.length - 1];
       const isLastCharOperator = operatorsRegex.test(lastChar);
-      if (!lastChar && action.payload === ("*" || "/" || ".")) {
+      let canInputBeFirstChar = true;
+      if (
+        action.payload === "/" ||
+        action.payload === "*" ||
+        action.payload === "."
+      ) {
+        canInputBeFirstChar = false;
+      }
+
+      if (!state.input.length && !canInputBeFirstChar) {
         //when first input equal to `*` or `/` or `.`
-        return;
+        return state;
       } else if (state.ans) {
         return {
           ...state,
