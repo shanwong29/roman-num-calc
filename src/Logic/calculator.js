@@ -3,6 +3,7 @@ class Calculator {
     this.num1 = num1;
     this.num2 = num2;
     this.method = method;
+    console.log(num1, method, num2);
   }
 
   addition() {
@@ -42,5 +43,5 @@ class Calculator {
   }
 }
 
-export default Calculator;
-// module.exports = Calculator;
+// export default Calculator;
+module.exports = Calculator;

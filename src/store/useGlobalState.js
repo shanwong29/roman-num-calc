@@ -1,15 +1,17 @@
 import { useReducer } from "react";
-import RomanNumCalc from "../Logic/romanNumCalc";
-import ArabicNumCalc from "../Logic/arabicNumCalc";
+import { getArabicAns } from "../Logic/getArabicAns";
 import {
   convertNumFromRomanToArabic,
+  convertExpFromRomanToArabic,
+} from "../Logic/convertRomanToArabic";
+
+import {
   convertNumFromArabicToRoman,
   convertExpFromArabicToRoman,
-  convertExpFromRomanToArabic,
-} from "../Logic/converterService";
+} from "../Logic/convertArabicToRoman";
 
 const initialState = {
-  isDarkMode: false,
+  isDarkMode: true,
   isRomanMode: true,
   input: "",
   ans: "",
@@ -58,14 +60,14 @@ const reducer = (state, action) => {
       };
 
     case "GET_ANS":
-      let expression;
+      let ans;
       if (state.isRomanMode) {
-        expression = new RomanNumCalc(state.input);
+        const arabicExp = convertExpFromRomanToArabic(state.input);
+        const arabicAns = getArabicAns(arabicExp);
+        ans = convertNumFromArabicToRoman(arabicAns);
       } else {
-        expression = new ArabicNumCalc(state.input);
+        ans = getArabicAns(state.input);
       }
-
-      let ans = expression.calculation();
       if (ans.errorMsg) {
         return { ...state, errorMsg: ans.errorMsg, ans: "" };
       }
@@ -75,13 +77,16 @@ const reducer = (state, action) => {
       if (state.ans || state.errorMsg) {
         return {
           ...state,
-          input: action.valueToBeAdded,
+          input: action.payload,
           ans: "",
           errorMsg: "",
         };
       } else {
-        return { ...state, input: state.input + action.valueToBeAdded };
+        return { ...state, input: state.input + action.payload };
       }
+
+    case `CHANGE_INPUT`:
+      return { ...state, input: action.payload };
 
     case "SET_INPUT":
       return { ...state, input: action.newValue };
