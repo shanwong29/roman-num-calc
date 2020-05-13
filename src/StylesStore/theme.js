@@ -11,4 +11,6 @@ export const theme = {
     text: white,
     background: black,
   },
+
+  // red: "#e26d5c", "ff686b", da627d
 };
