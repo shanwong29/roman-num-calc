@@ -12,6 +12,12 @@ function Panel() {
     let payload = "";
 
     switch (children) {
+      case "C":
+        if (!state.input) {
+          return;
+        }
+        type = "HANDLE_INPUT_BACKSPACE";
+        break;
       case "cancel":
         type = `CLEAR_INPUT_&_ANS`;
         break;
@@ -57,7 +63,7 @@ function Panel() {
     );
   });
 
-  let operators = [`+`, `-`, `*`, `/`, `cancel`, `=`];
+  let operators = [`+`, `-`, `*`, `/`, `cancel`, `=`, `C`];
   operators = operators.map((el, i) => {
     return (
       <Button key={i} onClickFn={() => handleInput(el)}>

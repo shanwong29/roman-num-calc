@@ -123,6 +123,14 @@ const reducer = (state, action) => {
     case "CLEAR_INPUT_&_ANS":
       return { ...state, ans: "", input: "", errorMsg: "" };
 
+    case "HANDLE_INPUT_BACKSPACE":
+      return {
+        ...state,
+        ans: "",
+        errorMsg: "",
+        input: state.input.slice(0, state.input.length - 1),
+      };
+
     default:
       return state;
   }
