@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import Button from "../Button/Button";
 import Context from "../../store/context";
+import * as Styled from "./ModeControl.styles";
 
 const ModeControl = () => {
   const { state, dispatch } = useContext(Context);
@@ -11,9 +11,9 @@ const ModeControl = () => {
 
   modeBtns = modeBtns.map((el, i) => {
     return (
-      <Button
+      <button
         key={i}
-        onClickFn={() => {
+        onClick={() => {
           if (
             (el === `roman` && state.isRomanMode) ||
             (el === `arabic` && !state.isRomanMode)
@@ -25,11 +25,11 @@ const ModeControl = () => {
         }}
       >
         {el}
-      </Button>
+      </button>
     );
   });
 
-  return modeBtns;
+  return <Styled.modeBtnsWrapper>{modeBtns}</Styled.modeBtnsWrapper>;
 };
 
 export default ModeControl;

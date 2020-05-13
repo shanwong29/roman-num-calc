@@ -8,10 +8,11 @@ The current context value is determined by the value prop of the nearest <MyCont
 
 const DarkModeControl = () => {
   const { state, dispatch } = useContext(Context);
-  console.log(state);
+  console.log("DarkMode component");
+
   return (
     <button onClick={() => dispatch({ type: "TOGGLE_DARK_MODE" })}>
-      TOGGLE Dark Mode
+      {state.isDarkMode ? `\uD83C\uDF1E` : `\uD83C\uDF19`}
     </button>
   );
 };
