@@ -108,12 +108,6 @@ const reducer = (state, action) => {
       }
       return { ...state, input: state.input + action.payload };
 
-    case "SET_INPUT":
-      return { ...state, input: action.newValue };
-
-    case "SET_ANS":
-      return { ...state, ans: action.newValue };
-
     case "CLEAR_INPUT_&_ANS":
       return { ...state, ans: "", input: "", errorMsg: "" };
 
