@@ -1,82 +1,127 @@
-import React, { useContext } from "react";
-import Button from "../Button/Button";
+import React, { useContext, useState } from "react";
+// import button from "../button/button";
 import Context from "../../store/context";
+import * as Styled from "./Panel.styles";
 
 function Panel() {
   const { state, dispatch } = useContext(Context);
+  const [dotNumber, setDotNumber] = useState(0);
 
   console.log("panel renderede");
-
-  let handleInput = (children) => {
-    let type;
-    let payload = "";
-
-    switch (children) {
-      case "C":
-        if (!state.input) {
-          return;
-        }
-        type = "HANDLE_INPUT_BACKSPACE";
-        break;
-      case "cancel":
-        type = `CLEAR_INPUT_&_ANS`;
-        break;
-      case "=":
-        if (!state.input) {
-          return;
-        }
-        type = `GET_ANS`;
-        break;
-
-      default:
-        if (state.errorMsg) {
-          //when there is err msg, user need to press AC to clear
-          return;
-        }
-        const operatorsRegex = /\+|-|\*|\/|\./;
-        const isOperator = operatorsRegex.test(children);
-        if (isOperator) {
-          type = `ADD_OPERATOR_TO_INPUT`;
-          payload = children;
-        } else {
-          //when input is number
-          type = `ADD_NUMBER_TO_INPUT`;
-          payload = children;
-        }
-    }
-
-    dispatch({ type, payload });
-  };
 
   let numBtns;
   if (state.isRomanMode) {
     numBtns = [`I`, `V`, `X`, `L`, `C`, `D`, `M`];
   } else {
-    numBtns = [`7`, `8`, `9`, `4`, `5`, `6`, `1`, `2`, `3`, `0`, `.`];
+    numBtns = [`7`, `8`, `9`, `4`, `5`, `6`, `1`, `2`, `3`, `0`];
   }
 
   numBtns = numBtns.map((el, i) => {
     return (
-      <Button key={i} onClickFn={() => handleInput(el)}>
+      <button
+        key={i}
+        onClick={() =>
+          !state.errorMsg &&
+          dispatch({ type: `ADD_NUMBER_TO_INPUT`, payload: el })
+        }
+      >
         {el}
-      </Button>
+      </button>
     );
   });
 
-  let operators = [`+`, `-`, `*`, `/`, `cancel`, `=`, `C`];
-  operators = operators.map((el, i) => {
+  let multipleAndDivisionBtns = [`/`, `*`];
+
+  multipleAndDivisionBtns = multipleAndDivisionBtns.map((el, i) => {
     return (
-      <Button key={i} onClickFn={() => handleInput(el)}>
+      <button
+        key={i}
+        onClick={() =>
+          !state.errorMsg &&
+          state.input.length &&
+          dispatch({ type: `ADD_OPERATOR_TO_INPUT`, payload: el })
+        }
+      >
         {el}
-      </Button>
+      </button>
     );
   });
+
+  let minusAndPlusBtns = [`-`, `+`];
+
+  minusAndPlusBtns = minusAndPlusBtns.map((el, i) => {
+    return (
+      <button
+        key={i}
+        onClick={() =>
+          !state.errorMsg &&
+          dispatch({ type: `ADD_OPERATOR_TO_INPUT`, payload: el })
+        }
+      >
+        {el}
+      </button>
+    );
+  });
+
+  const dotBtn = (
+    <button
+      onClick={() =>
+        !state.errorMsg &&
+        state.input.length &&
+        dotNumber === 0 &&
+        dispatch({ type: `ADD_OPERATOR_TO_INPUT`, payload: "." })
+      }
+    >
+      .
+    </button>
+  );
+
+  const backSpaceBtn = (
+    <button
+      onClick={() => {
+        state.input && dispatch({ type: "HANDLE_INPUT_BACKSPACE" });
+      }}
+    >
+      C
+    </button>
+  );
+
+  const clearAllBtn = (
+    <button
+      onClick={() => {
+        dispatch({ type: `CLEAR_INPUT_&_ANS` });
+      }}
+    >
+      AC
+    </button>
+  );
+
+  const equalBtn = (
+    <button
+      onClick={() => {
+        state.input && dispatch({ type: `GET_ANS` });
+      }}
+    >
+      =
+    </button>
+  );
 
   return (
-    <div>
-      {numBtns}
-      {operators}
-    </div>
+    <>
+      <Styled.ClearBtnsWrapper>
+        {backSpaceBtn}
+        {clearAllBtn}
+      </Styled.ClearBtnsWrapper>
+      <Styled.NumBtnsWrapper>
+        {numBtns}
+        {dotBtn}
+        {equalBtn}
+      </Styled.NumBtnsWrapper>
+      <Styled.OperatorWrapper>
+        {multipleAndDivisionBtns}
+        {minusAndPlusBtns}
+      </Styled.OperatorWrapper>
+    </>
   );
 }
 
