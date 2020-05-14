@@ -9,12 +9,16 @@ import GlobalStateProvider from "./store/GloblaStateProvider";
 export function App() {
   return (
     <GlobalStateProvider>
-      <Styled.App className="App">
-        <DarkModeControl />
-        <Display />
-        <ModeControl />
-        <Panel />
-      </Styled.App>
+      <Styled.AppWrapper>
+        <Styled.NavWrapper>
+          <DarkModeControl />
+        </Styled.NavWrapper>
+        <Styled.CalcWrapper>
+          <Display />
+          <ModeControl />
+          <Panel />
+        </Styled.CalcWrapper>
+      </Styled.AppWrapper>
     </GlobalStateProvider>
   );
 }

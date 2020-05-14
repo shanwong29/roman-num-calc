@@ -115,7 +115,7 @@ function Panel() {
       </Styled.ClearBtnsWrapper>
       <Styled.NumBtnsWrapper>
         {numBtns}
-        {dotBtn}
+        {!state.isRomanMode && dotBtn}
         {equalBtn}
       </Styled.NumBtnsWrapper>
       <Styled.OperatorWrapper>

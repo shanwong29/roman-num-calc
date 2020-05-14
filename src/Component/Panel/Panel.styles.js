@@ -5,8 +5,13 @@ export const NumBtnsWrapper = styled.div`
   grid-area: number;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
+  /* grid-template-rows: repeat(3, 1fr); */
+
   justify-items: center;
   align-items: center;
+  justify-items: center;
+  align-items: center;
+  /* direction: rtl; */
 `;
 
 export const OperatorWrapper = styled.div`

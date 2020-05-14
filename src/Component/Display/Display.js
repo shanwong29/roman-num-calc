@@ -7,7 +7,7 @@ function Display() {
 
   return (
     <>
-      <Styled.InputDisplay>{state.input}</Styled.InputDisplay>
+      <Styled.InputDisplay value={state.input} readOnly />
       <Styled.AnsDisplay>
         {state.ans} {`err ${state.errorMsg}`}
       </Styled.AnsDisplay>
