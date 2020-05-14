@@ -8,9 +8,12 @@ import { theme } from "../StylesStore/theme";
 
 const GlobalStateProvider = ({ children }) => {
   const [state, dispatch] = useGlobalState();
+  const themeStyle = state.isDarkMode ? theme.dark : theme.light;
+  const langStyle = state.isRomanMode ? theme.romanStyle : theme.arabicStyle;
+  console.log(themeStyle);
   return (
     <Context.Provider value={{ state, dispatch }}>
-      <ThemeProvider theme={state.isDarkMode ? theme.dark : theme.light}>
+      <ThemeProvider theme={{ ...theme, themeStyle, langStyle }}>
         <GlobalStyles />
         {children}
       </ThemeProvider>

@@ -10,9 +10,9 @@ export function App() {
   return (
     <GlobalStateProvider>
       <Styled.AppWrapper>
-        <Styled.NavWrapper>
-          <DarkModeControl />
-        </Styled.NavWrapper>
+        {/* <Styled.NavWrapper> */}
+        <DarkModeControl />
+        {/* </Styled.NavWrapper> */}
         <Styled.CalcWrapper>
           <Display />
           <ModeControl />

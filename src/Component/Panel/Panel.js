@@ -17,7 +17,7 @@ function Panel() {
 
   numBtns = numBtns.map((el, i) => {
     return (
-      <button
+      <Styled.NumberBtn
         key={i}
         onClick={() =>
           !state.errorMsg &&
@@ -25,7 +25,7 @@ function Panel() {
         }
       >
         {el}
-      </button>
+      </Styled.NumberBtn>
     );
   });
 
@@ -33,7 +33,7 @@ function Panel() {
 
   multipleAndDivisionBtns = multipleAndDivisionBtns.map((el, i) => {
     return (
-      <button
+      <Styled.FunctionBtn
         key={i}
         onClick={() =>
           !state.errorMsg &&
@@ -45,7 +45,7 @@ function Panel() {
         }
       >
         {el}
-      </button>
+      </Styled.FunctionBtn>
     );
   });
 
@@ -53,7 +53,7 @@ function Panel() {
 
   minusAndPlusBtns = minusAndPlusBtns.map((el, i) => {
     return (
-      <button
+      <Styled.FunctionBtn
         key={i}
         onClick={() =>
           !state.errorMsg &&
@@ -61,12 +61,12 @@ function Panel() {
         }
       >
         {el}
-      </button>
+      </Styled.FunctionBtn>
     );
   });
 
   const dotBtn = (
-    <button
+    <Styled.FunctionBtn
       onClick={() =>
         !state.errorMsg &&
         state.input.length &&
@@ -74,37 +74,38 @@ function Panel() {
       }
     >
       .
-    </button>
+    </Styled.FunctionBtn>
   );
 
   const backSpaceBtn = (
-    <button
+    <Styled.FunctionBtn
       onClick={() => {
         state.input && dispatch({ type: "HANDLE_INPUT_BACKSPACE" });
       }}
     >
       C
-    </button>
+    </Styled.FunctionBtn>
   );
 
   const clearAllBtn = (
-    <button
+    <Styled.FunctionBtn
       onClick={() => {
         dispatch({ type: `CLEAR_INPUT_&_ANS` });
       }}
     >
       AC
-    </button>
+    </Styled.FunctionBtn>
   );
 
   const equalBtn = (
-    <button
+    <Styled.EqualBtn
+      isRomanMode={state.isRomanMode}
       onClick={() => {
         state.input && dispatch({ type: `GET_ANS` });
       }}
     >
       =
-    </button>
+    </Styled.EqualBtn>
   );
 
   return (

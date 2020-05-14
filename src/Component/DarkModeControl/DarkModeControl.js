@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import Context from "../../store/context";
+import * as Styled from "./DarkModeControl.styles";
 
 /* useContext 
 ==> Accepts a context object (the value returned from React.createContext) and 
@@ -11,9 +12,9 @@ const DarkModeControl = () => {
   console.log("DarkMode component");
 
   return (
-    <button onClick={() => dispatch({ type: "TOGGLE_DARK_MODE" })}>
+    <Styled.SwitchBtn onClick={() => dispatch({ type: "TOGGLE_DARK_MODE" })}>
       {state.isDarkMode ? `\uD83C\uDF1E` : `\uD83C\uDF19`}
-    </button>
+    </Styled.SwitchBtn>
   );
 };
 

@@ -8,9 +8,9 @@ function Display() {
   return (
     <>
       <Styled.InputDisplay value={state.input} readOnly />
-      <Styled.AnsDisplay>
-        {state.ans} {`err ${state.errorMsg}`}
-      </Styled.AnsDisplay>
+      <Styled.AnsWrapper>
+        <p>{state.ans}</p> <span>{state.errorMsg}</span>
+      </Styled.AnsWrapper>
     </>
   );
 }

@@ -11,8 +11,10 @@ const ModeControl = () => {
 
   modeBtns = modeBtns.map((el, i) => {
     return (
-      <button
+      <Styled.NumSwitchBtn
         key={i}
+        isRomanActive={el === `roman` && state.isRomanMode}
+        isArabicActive={el === `arabic` && !state.isRomanMode}
         onClick={() => {
           if (
             (el === `roman` && state.isRomanMode) ||
@@ -25,11 +27,11 @@ const ModeControl = () => {
         }}
       >
         {el}
-      </button>
+      </Styled.NumSwitchBtn>
     );
   });
 
-  return <Styled.modeBtnsWrapper>{modeBtns}</Styled.modeBtnsWrapper>;
+  return <Styled.NumSwitchWrapper>{modeBtns}</Styled.NumSwitchWrapper>;
 };
 
 export default ModeControl;

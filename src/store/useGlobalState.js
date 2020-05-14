@@ -7,8 +7,8 @@ import {
 } from "../Logic/convertArabicToRoman";
 
 const initialState = {
-  isDarkMode: true,
-  isRomanMode: true,
+  isDarkMode: false,
+  isRomanMode: false,
   input: "",
   ans: "",
   errorMsg: "",
