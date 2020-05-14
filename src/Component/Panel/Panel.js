@@ -10,7 +10,7 @@ function Panel() {
 
   let numBtns;
   if (state.isRomanMode) {
-    numBtns = [`I`, `V`, `X`, `L`, `C`, `D`, `M`];
+    numBtns = [`M`, `D`, `C`, `L`, `X`, `V`, `I`];
   } else {
     numBtns = [`7`, `8`, `9`, `4`, `5`, `6`, `1`, `2`, `3`, `0`];
   }

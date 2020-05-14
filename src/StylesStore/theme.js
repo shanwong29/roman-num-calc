@@ -4,7 +4,6 @@ const white = "#fdf6e3";
 const magenta = "#d33682";
 const yellow = "#b58900";
 const cyan = "#2aa198";
-const green = "#859900";
 const violet = "#6c71c4";
 
 export const theme = {
@@ -18,15 +17,15 @@ export const theme = {
   dark: {
     text: white,
     background: black,
-    switchColor: green,
+    switchColor: white,
   },
 
   romanStyle: {
-    color: cyan,
+    color: yellow,
   },
 
   arabicStyle: {
-    color: yellow,
+    color: cyan,
   },
 
   btnColor: {

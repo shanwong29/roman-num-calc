@@ -10,5 +10,6 @@ export const SwitchBtn = styled.button`
   color: ${({ theme }) => theme.themeStyle.switchColor};
   &:hover {
     color: ${({ theme }) => theme.themeStyle.switchColor};
+    transform: scale(1.1);
   }
 `;

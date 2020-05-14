@@ -7,6 +7,7 @@ export const InputDisplay = styled.input`
   background: ${({ theme }) => theme.themeStyle.background};
   color: ${({ theme }) => theme.themeStyle.text};
   border: none;
+  outline: none;
 `;
 
 export const AnsWrapper = styled.div`

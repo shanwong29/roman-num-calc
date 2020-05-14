@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "../../StylesStore/theme";
 
 export const NumBtnsWrapper = styled.div`
   display: grid;
