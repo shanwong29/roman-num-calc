@@ -8,6 +8,8 @@ function Panel() {
 
   console.log("panel renderede");
 
+  ////////////////////////// Number btns ///////////////////////////////
+
   let numBtns;
   if (state.isRomanMode) {
     numBtns = [`M`, `D`, `C`, `L`, `X`, `V`, `I`];
@@ -29,53 +31,33 @@ function Panel() {
     );
   });
 
-  let multipleAndDivisionBtns = [`/`, `*`];
+  ////////////////////////// operator btns ///////////////////////////////
 
-  multipleAndDivisionBtns = multipleAndDivisionBtns.map((el, i) => {
+  let operators = [`/`, `*`, `-`, `+`];
+
+  const handleOperatorInput = (operator) => {
+    if (!state.errorMsg && state.input.length) {
+      dispatch({ type: `ADD_OPERATOR_TO_INPUT`, payload: operator });
+    } else {
+      alert("The first input need to be a number.");
+    }
+  };
+
+  operators = operators.map((el, i) => {
     return (
-      <Styled.FunctionBtn
-        key={i}
-        onClick={() =>
-          !state.errorMsg &&
-          (state.input.length > 1 ||
-            (state.input.length === 1 &&
-              state.input[0] !== "+" &&
-              state.input[0] !== "-")) &&
-          dispatch({ type: `ADD_OPERATOR_TO_INPUT`, payload: el })
-        }
-      >
-        {el}
-      </Styled.FunctionBtn>
-    );
-  });
-
-  let minusAndPlusBtns = [`-`, `+`];
-
-  minusAndPlusBtns = minusAndPlusBtns.map((el, i) => {
-    return (
-      <Styled.FunctionBtn
-        key={i}
-        onClick={() =>
-          !state.errorMsg &&
-          dispatch({ type: `ADD_OPERATOR_TO_INPUT`, payload: el })
-        }
-      >
+      <Styled.FunctionBtn key={i} onClick={() => handleOperatorInput(el)}>
         {el}
       </Styled.FunctionBtn>
     );
   });
 
   const dotBtn = (
-    <Styled.FunctionBtn
-      onClick={() =>
-        !state.errorMsg &&
-        state.input.length &&
-        dispatch({ type: `ADD_OPERATOR_TO_INPUT`, payload: "." })
-      }
-    >
+    <Styled.FunctionBtn onClick={() => handleOperatorInput(".")}>
       .
     </Styled.FunctionBtn>
   );
+
+  ////////////////////////// other btns ///////////////////////////////
 
   const backSpaceBtn = (
     <Styled.FunctionBtn
@@ -119,10 +101,7 @@ function Panel() {
         {!state.isRomanMode && dotBtn}
         {equalBtn}
       </Styled.NumBtnsWrapper>
-      <Styled.OperatorWrapper>
-        {multipleAndDivisionBtns}
-        {minusAndPlusBtns}
-      </Styled.OperatorWrapper>
+      <Styled.OperatorWrapper>{operators}</Styled.OperatorWrapper>
     </>
   );
 }
