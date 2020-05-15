@@ -13,7 +13,7 @@ export const CalcWrapper = styled.div`
     "number     number    number     operator"
     "number     number    number     operator"
     "number     number    number     operator";
-  border: solid 2px ${({ theme }) => theme.grey};
+  border: solid 2px ${({ theme }) => theme.baseColor};
   border-radius: 25px;
   /* padding: 2vw; */
   padding: 28px;

@@ -1,4 +1,5 @@
-const Calculator = require("./calculator");
+import Calculator from "./calculator";
+
 export const getArabicAns = (input) => {
   //input is a str
 
@@ -21,15 +22,11 @@ export const getArabicAns = (input) => {
       numberArr.push(Number(number));
       operatorArr.push(operator);
       startCuttingPt = i + 1;
-      //   console.log(startCuttingPt);
     } else if (i === input.length - 1) {
-      //   console.log(startCuttingPt);
       const number = input.slice(startCuttingPt);
-      //   console.log(number);
       numberArr.push(Number(number));
     }
   }
-  console.log([numberArr, operatorArr]);
 
   let ans = numberArr[0];
 
@@ -45,5 +42,3 @@ export const getArabicAns = (input) => {
   }
   return ans;
 };
-
-console.log(getArabicAns("-8/4*5.-6.+8"));

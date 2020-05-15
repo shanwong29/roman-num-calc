@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-// import button from "../button/button";
 import Context from "../../store/context";
 import * as Styled from "./Panel.styles";
 
@@ -65,14 +64,14 @@ function Panel() {
         state.input && dispatch({ type: "HANDLE_INPUT_BACKSPACE" });
       }}
     >
-      C
+      &#8592;
     </Styled.FunctionBtn>
   );
 
   const clearAllBtn = (
     <Styled.FunctionBtn
       onClick={() => {
-        dispatch({ type: `CLEAR_INPUT_&_ANS` });
+        state.input && dispatch({ type: `CLEAR_INPUT_&_ANS` });
       }}
     >
       AC

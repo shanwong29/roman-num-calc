@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import Context from "../../store/context";
-import * as Styled from "./DarkModeControl.styles";
+import * as Styled from "./DarkModeSwitch.styles";
 
 /* useContext 
 ==> Accepts a context object (the value returned from React.createContext) and 
 returns the current context value for that context. 
 The current context value is determined by the value prop of the nearest <MyContext.Provider> above the calling component in the tree. */
 
-const DarkModeControl = () => {
+const DarkModeSwitch = () => {
   const { state, dispatch } = useContext(Context);
   console.log("DarkMode component");
 
@@ -18,4 +18,4 @@ const DarkModeControl = () => {
   );
 };
 
-export default DarkModeControl;
+export default DarkModeSwitch;

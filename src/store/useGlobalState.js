@@ -1,10 +1,10 @@
 import { useReducer } from "react";
-import { getArabicAns } from "../Logic/getArabicAns";
-import { convertExpFromRomanToArabic } from "../Logic/convertRomanToArabic";
+import { getArabicAns } from "../service/getArabicAns";
+import { convertExpFromRomanToArabic } from "../service/convertRomanToArabic";
 import {
   convertNumFromArabicToRoman,
   convertExpFromArabicToRoman,
-} from "../Logic/convertArabicToRoman";
+} from "../service/convertArabicToRoman";
 
 const initialState = {
   isDarkMode: false,
@@ -103,6 +103,7 @@ const reducer = (state, action) => {
       const lastChar = state.input[state.input.length - 1];
       const isLastCharOperator = operatorsRegex.test(lastChar);
       if (state.ans || state.ans === 0) {
+        // add input to previous ans
         return {
           ...state,
           input: state.ans + action.payload,

@@ -1,13 +1,7 @@
 import styled from "styled-components";
 
-const switchBtnBgColor = ({ isRomanActive, isArabicActive, theme }) => {
-  if (isRomanActive) {
-    return theme.langStyle.color;
-  } else if (isArabicActive) {
-    return theme.langStyle.color;
-  }
-  return theme.grey;
-  //when both cases are false, use the default color
+const switchBtnBgColor = ({ isActive, theme }) => {
+  return isActive ? theme.langStyle.color : theme.baseColor;
 };
 
 export const NumSwitchWrapper = styled.div`
@@ -17,7 +11,7 @@ export const NumSwitchWrapper = styled.div`
   align-items: center;
 `;
 
-export const NumSwitchBtn = styled.button`
+export const SwitchBtn = styled.button`
   width: 100%;
   border-radius: 20px;
   margin: 10px 5px;
@@ -27,3 +21,5 @@ export const NumSwitchBtn = styled.button`
     color: ${switchBtnBgColor};
   }
 `;
+
+export const RomanSwitch = styled.button``;

@@ -17,26 +17,25 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   button {
-    width:68px;
-    height: 68px;
+    width:${({ theme }) => theme.btnSize.default};
+    height: ${({ theme }) => theme.btnSize.default};
     border-radius: 50%;
-    outline:none;
     background: none;
-    border: 2px solid ${({ theme }) => theme.grey};;
-    color: ${({ theme }) => theme.grey};
+    border: 2px solid;
     margin:2px;
     font-size:1.5rem;
     font-weight:500;
     cursor:pointer;
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px ${({ theme }) => theme.btnColor.focus};
+    }
     &:hover {
       color: ${({ theme }) => theme.themeStyle.background};
     }
       @media ${({ theme }) => theme.breakpoints.sm} {
-        width: 18vw;
-        height: 18vw;
+        width: ${({ theme }) => theme.btnSize.sm};
+        height: ${({ theme }) => theme.btnSize.sm};
       }
   }
 `;
-// font-size: 1.5rem;
-// width: 5vw;
-// height: 5vw;
