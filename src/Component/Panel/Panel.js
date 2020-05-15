@@ -5,8 +5,6 @@ import * as Styled from "./Panel.styles";
 function Panel() {
   const { state, dispatch } = useContext(Context);
 
-  console.log("panel renderede");
-
   ////////////////////////// Number btns ///////////////////////////////
 
   let numBtns;
@@ -35,7 +33,10 @@ function Panel() {
   let operators = [`\u00F7`, `\u00D7`, `-`, `+`];
 
   const handleOperatorAndDot = (sign) => {
-    if (!state.errorMsg && state.input.length) {
+    if (state.errorMsg) {
+      return;
+    }
+    if (state.input.length) {
       dispatch({ type: `ADD_OPERATOR_OR_DOT_TO_INPUT`, payload: sign });
     } else {
       alert("The first input need to be a number.");
