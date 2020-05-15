@@ -60,5 +60,7 @@ export const getArabicAns = (input) => {
       errorMsg: `Invalid Input`,
     };
   }
-  return ans;
+
+  ans = ans.toFixed(7);
+  return Number(ans);
 };
