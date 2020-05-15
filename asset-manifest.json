@@ -1,22 +1,19 @@
 {
   "files": {
-    "main.css": "/roman-num-calc/static/css/main.83a7e514.chunk.css",
-    "main.js": "/roman-num-calc/static/js/main.d4409bd6.chunk.js",
-    "main.js.map": "/roman-num-calc/static/js/main.d4409bd6.chunk.js.map",
-    "runtime-main.js": "/roman-num-calc/static/js/runtime-main.4fe1fbc5.js",
-    "runtime-main.js.map": "/roman-num-calc/static/js/runtime-main.4fe1fbc5.js.map",
-    "static/js/2.0561a1d6.chunk.js": "/roman-num-calc/static/js/2.0561a1d6.chunk.js",
-    "static/js/2.0561a1d6.chunk.js.map": "/roman-num-calc/static/js/2.0561a1d6.chunk.js.map",
-    "index.html": "/roman-num-calc/index.html",
-    "precache-manifest.10d43643225be59efcb2cd437a614ca2.js": "/roman-num-calc/precache-manifest.10d43643225be59efcb2cd437a614ca2.js",
-    "service-worker.js": "/roman-num-calc/service-worker.js",
-    "static/css/main.83a7e514.chunk.css.map": "/roman-num-calc/static/css/main.83a7e514.chunk.css.map",
-    "static/js/2.0561a1d6.chunk.js.LICENSE.txt": "/roman-num-calc/static/js/2.0561a1d6.chunk.js.LICENSE.txt"
+    "main.js": "/arabic-roman-calc/static/js/main.da2a2728.chunk.js",
+    "main.js.map": "/arabic-roman-calc/static/js/main.da2a2728.chunk.js.map",
+    "runtime-main.js": "/arabic-roman-calc/static/js/runtime-main.27ee23fb.js",
+    "runtime-main.js.map": "/arabic-roman-calc/static/js/runtime-main.27ee23fb.js.map",
+    "static/js/2.ecb9fd7f.chunk.js": "/arabic-roman-calc/static/js/2.ecb9fd7f.chunk.js",
+    "static/js/2.ecb9fd7f.chunk.js.map": "/arabic-roman-calc/static/js/2.ecb9fd7f.chunk.js.map",
+    "index.html": "/arabic-roman-calc/index.html",
+    "precache-manifest.e5afc9b1da859ad58bddf3a80205648d.js": "/arabic-roman-calc/precache-manifest.e5afc9b1da859ad58bddf3a80205648d.js",
+    "service-worker.js": "/arabic-roman-calc/service-worker.js",
+    "static/js/2.ecb9fd7f.chunk.js.LICENSE.txt": "/arabic-roman-calc/static/js/2.ecb9fd7f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.4fe1fbc5.js",
-    "static/js/2.0561a1d6.chunk.js",
-    "static/css/main.83a7e514.chunk.css",
-    "static/js/main.d4409bd6.chunk.js"
+    "static/js/runtime-main.27ee23fb.js",
+    "static/js/2.ecb9fd7f.chunk.js",
+    "static/js/main.da2a2728.chunk.js"
   ]
 }
