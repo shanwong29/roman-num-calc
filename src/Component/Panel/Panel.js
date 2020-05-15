@@ -32,11 +32,11 @@ function Panel() {
 
   ////////////////////////// operator btns ///////////////////////////////
 
-  let operators = [`/`, `*`, `-`, `+`];
+  let operators = [`\u00F7`, `\u00D7`, `-`, `+`];
 
-  const handleOperatorInput = (operator) => {
+  const handleOperatorAndDot = (sign) => {
     if (!state.errorMsg && state.input.length) {
-      dispatch({ type: `ADD_OPERATOR_TO_INPUT`, payload: operator });
+      dispatch({ type: `ADD_OPERATOR_OR_DOT_TO_INPUT`, payload: sign });
     } else {
       alert("The first input need to be a number.");
     }
@@ -44,14 +44,14 @@ function Panel() {
 
   operators = operators.map((el, i) => {
     return (
-      <Styled.FunctionBtn key={i} onClick={() => handleOperatorInput(el)}>
+      <Styled.FunctionBtn key={i} onClick={() => handleOperatorAndDot(el)}>
         {el}
       </Styled.FunctionBtn>
     );
   });
 
   const dotBtn = (
-    <Styled.FunctionBtn onClick={() => handleOperatorInput(".")}>
+    <Styled.FunctionBtn onClick={() => handleOperatorAndDot(".")}>
       .
     </Styled.FunctionBtn>
   );
