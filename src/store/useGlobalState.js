@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { getArabicAns } from "../service/getArabicAns";
+import { getArabicAns, isOperator } from "../service/getArabicAns";
 import { convertExpFromRomanToArabic } from "../service/convertRomanToArabic";
 import {
   convertNumFromArabicToRoman,
@@ -98,10 +98,9 @@ const reducer = (state, action) => {
         return { ...state, input: state.input + action.payload };
       }
 
-    case `ADD_OPERATOR_TO_INPUT`:
-      const operatorsRegex = /\+|-|\*|\/|\./;
+    case `ADD_OPERATOR_OR_DOT_TO_INPUT`:
       const lastChar = state.input[state.input.length - 1];
-      const isLastCharOperator = operatorsRegex.test(lastChar);
+      const isLastCharOperator = isOperator(lastChar) || lastChar === ".";
       if (state.ans || state.ans === 0) {
         // add input to previous ans
         return {

@@ -1,3 +1,5 @@
+import { isOperator } from "./getArabicAns";
+
 const convertNumFromArabicToRoman = (givenNum) => {
   //givenNum is always a numberized value
   //This function should return a str
@@ -60,10 +62,9 @@ const convertNumFromArabicToRoman = (givenNum) => {
 const convertExpFromArabicToRoman = (givenExp) => {
   let expArr = [];
   let numStr = "";
-  let digitRegex = /\d+/;
 
   for (let i = 0; i < givenExp.length; i++) {
-    if (digitRegex.test(givenExp[i]) || givenExp[i] === ".") {
+    if (!isOperator(givenExp[i]) || givenExp[i] === ".") {
       numStr += givenExp[i];
     } else {
       if (numStr.length > 0) {
@@ -78,7 +79,7 @@ const convertExpFromArabicToRoman = (givenExp) => {
   }
 
   for (let i = 0; i < expArr.length; i++) {
-    if (digitRegex.test(expArr[i])) {
+    if (!isOperator(expArr[i])) {
       expArr[i] = convertNumFromArabicToRoman(expArr[i]);
       if (expArr[i].errorMsg) {
         return {
