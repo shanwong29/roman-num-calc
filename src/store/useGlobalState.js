@@ -7,7 +7,9 @@ import {
 } from "../service/convertArabicToRoman";
 
 const initialState = {
-  isDarkMode: false,
+  isDarkMode: window.localStorage.getItem("roman-num-coverter-dark-mode")
+    ? true
+    : false,
   isRomanMode: false,
   input: "",
   ans: "",
@@ -28,6 +30,11 @@ const getRomanAns = (input) => {
 const reducer = (state, action) => {
   switch (action.type) {
     case "TOGGLE_DARK_MODE":
+      if (state.isDarkMode) {
+        window.localStorage.removeItem("roman-num-coverter-dark-mode");
+      } else {
+        window.localStorage.setItem("roman-num-coverter-dark-mode", true);
+      }
       return { ...state, isDarkMode: !state.isDarkMode };
 
     case "CHANGE_LANG_MODE":
