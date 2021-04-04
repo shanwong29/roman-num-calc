@@ -1,0 +1,42 @@
+name: roman-num-converter app deploy
+on:
+  push:
+    paths:
+      - ".github/workflows/main.yml"
+      - "src/**"
+      - "public/**"
+      - "package*.json"
+    branches:
+      - master
+
+jobs:
+  # stage
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12.x
+  #     - name: Test code
+  #       run: |
+  #         npm ci
+  #         npm run test:coverage
+
+  deploy:
+    # needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Build static files
+        run: |
+          npm ci
+          npm run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.6.1
+        with:
+          personal_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_dir: ./build
