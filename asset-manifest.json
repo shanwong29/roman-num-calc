@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/arabic-roman-calc/static/js/main.606c7844.chunk.js",
-    "main.js.map": "/arabic-roman-calc/static/js/main.606c7844.chunk.js.map",
+    "main.js": "/arabic-roman-calc/static/js/main.f5c94fb5.chunk.js",
+    "main.js.map": "/arabic-roman-calc/static/js/main.f5c94fb5.chunk.js.map",
     "runtime-main.js": "/arabic-roman-calc/static/js/runtime-main.27ee23fb.js",
     "runtime-main.js.map": "/arabic-roman-calc/static/js/runtime-main.27ee23fb.js.map",
     "static/js/2.ecb9fd7f.chunk.js": "/arabic-roman-calc/static/js/2.ecb9fd7f.chunk.js",
     "static/js/2.ecb9fd7f.chunk.js.map": "/arabic-roman-calc/static/js/2.ecb9fd7f.chunk.js.map",
     "index.html": "/arabic-roman-calc/index.html",
-    "precache-manifest.76d22d55425a472dd4c9ee61fb43f285.js": "/arabic-roman-calc/precache-manifest.76d22d55425a472dd4c9ee61fb43f285.js",
+    "precache-manifest.90140440a7c754af849a9d229a6fd8b3.js": "/arabic-roman-calc/precache-manifest.90140440a7c754af849a9d229a6fd8b3.js",
     "service-worker.js": "/arabic-roman-calc/service-worker.js",
     "static/js/2.ecb9fd7f.chunk.js.LICENSE.txt": "/arabic-roman-calc/static/js/2.ecb9fd7f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.27ee23fb.js",
     "static/js/2.ecb9fd7f.chunk.js",
-    "static/js/main.606c7844.chunk.js"
+    "static/js/main.f5c94fb5.chunk.js"
   ]
 }

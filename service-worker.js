@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/arabic-roman-calc/precache-manifest.76d22d55425a472dd4c9ee61fb43f285.js"
+  "/arabic-roman-calc/precache-manifest.90140440a7c754af849a9d229a6fd8b3.js"
 );
 
 self.addEventListener('message', (event) => {
