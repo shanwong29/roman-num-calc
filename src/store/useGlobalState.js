@@ -124,6 +124,7 @@ const reducer = (state, action) => {
           input: state.input.slice(0, state.input.length - 1) + action.payload,
         };
       }
+      // ans is empty string
       return { ...state, input: state.input + action.payload };
 
     case "CLEAR_INPUT_&_ANS":
