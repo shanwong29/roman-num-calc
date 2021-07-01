@@ -55,7 +55,9 @@ function Panel() {
 
   const handleKeyPressed = useCallback(
     (e) => {
-      if (focused) return;
+      if (focused) {
+        document.activeElement.blur();
+      }
       const keyPressed = e.key;
 
       const handleNumAndOperators = () => {
